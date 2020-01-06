@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xuzhch.springmongodemo.demo.dao.MemberDao">
+    <resultMap id="listMap" type="com.xuzhch.springmongodemo.demo.entity.Member">
+        <result property="id" column="id" />
+        <result property="account" column="account" />
+        <result property="nickName" column="nickName" />
+        <result property="sex" column="sex" />
+        <result property="createTime" column="createTime" />
+        <result property="ip" column="ip" />
+    </resultMap>
+    <select id="list" resultMap="listMap">
+        SELECT
+            id AS id,
+            member_name AS account,
+            nick_name AS nickName,
+            member_sex AS sex,
+            create_date AS createTime,
+            member_login_ip AS ip
+        FROM
+            lmshop_member
+    </select>
+</mapper>
