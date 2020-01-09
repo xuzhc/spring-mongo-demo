@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.aggregation.GroupOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Field;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -45,6 +46,7 @@ class SpringMongoDemoApplicationTests {
                 Aggregation.project("count").and("ip").as("ip").andInclude("ip").and("sex").as("sex").andInclude("sex")
 
         );
+
         AggregationResults<Object> aggregate = mongoTemplate.aggregate(aggregation, Member.class, Object.class);
         log.info("{\"结果信息\":{}}", JSON.toJSONString(aggregate.getMappedResults()));
     }
@@ -113,6 +115,8 @@ class SpringMongoDemoApplicationTests {
     void query1() {
         Query query = new Query();
         query.addCriteria(Criteria.where("nickName").is("游客"));
+//        Field fields = query.fields();
+//        fields.exclude("account");
 //        query.addCriteria(Criteria.where("nickName").is("游客").andOperator(Criteria.where("account").is("17600433562")));
         List<Member> members = mongoTemplate.find(query, Member.class);
         for (Member member : members) {
@@ -134,6 +138,10 @@ class SpringMongoDemoApplicationTests {
         List<Member> list = memberService.list();
         Collection<Member> insert = mongoTemplate.insert(list, Member.class);
         log.info("结果信息：{}", insert.size());
+
+        mongoTemplate.save(new Object());
+        mongoTemplate.insert(new Object());
+
     }
 
 
