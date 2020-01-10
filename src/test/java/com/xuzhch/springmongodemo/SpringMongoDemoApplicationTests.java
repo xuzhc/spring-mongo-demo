@@ -6,7 +6,6 @@ import com.mongodb.client.result.UpdateResult;
 import com.xuzhch.springmongodemo.demo.entity.Member;
 import com.xuzhch.springmongodemo.demo.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.util.DateUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.aggregation.GroupOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Field;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -139,8 +136,6 @@ class SpringMongoDemoApplicationTests {
         Collection<Member> insert = mongoTemplate.insert(list, Member.class);
         log.info("结果信息：{}", insert.size());
 
-        mongoTemplate.save(new Object());
-        mongoTemplate.insert(new Object());
 
     }
 
